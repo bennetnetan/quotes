@@ -3,11 +3,11 @@ import 'quote.dart';
 import 'quote_card.dart';
 
 void main() {
-  runApp(MaterialApp(
+  runApp(const MaterialApp(
     home: QuoteList(),
   ));
 }
-  
+
 class QuoteList extends StatefulWidget {
   const QuoteList({super.key});
 
@@ -29,12 +29,19 @@ class _QuoteListState extends State<QuoteList> {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: Text('Awesome Quotes'),
+        title: const Text('Awesome Quotes'),
         centerTitle: true,
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+        children: quotes.map((quote) => QuoteCard(
+            quote: quote,
+            delete: () {
+              setState(() {
+                quotes.remove(quote);
+              });
+            }
+          )).toList(),
       ),
     );
   }

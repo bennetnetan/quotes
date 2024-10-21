@@ -5,12 +5,13 @@ class QuoteCard extends StatelessWidget {
   
 
   final Quote quote;
-  QuoteCard({ required this.quote });
+  final Function delete;
+  const QuoteCard({super.key,  required this.quote, required this.delete });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -23,7 +24,7 @@ class QuoteCard extends StatelessWidget {
                 color: Colors.grey[600],
               ),
             ),
-            SizedBox(height: 6),
+            const SizedBox(height: 6),
             Text(
               '- ${quote.author}',
               style: TextStyle(
@@ -31,6 +32,11 @@ class QuoteCard extends StatelessWidget {
                 color: Colors.grey[400],
                 ),
             ),
+            const SizedBox(height: 8.0,),
+            IconButton(
+              onPressed: delete,
+              icon: const Icon(Icons.delete),
+              ),
           ],
         ),
       ),
